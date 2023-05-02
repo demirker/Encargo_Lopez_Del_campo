@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <link rel="shortcut icon" href="img/basico.webp"> 
+    <title>Cheemis Shop Inicio</title>
 </head>
 
 
@@ -72,7 +75,7 @@
                     </div>
                     <img class="d-block w-100" src="img/perro_tumbado_juguete-1110x600.jpg" id="carouselImg">
                 </div>
-  
+
                 <div class="carousel-item">
                     <div class="carousel-caption">
                         <h3 id="inTitulo">Limpieza</h3>
@@ -80,7 +83,7 @@
                     </div>
                     <img class="d-block w-100" src="img/gato_baño.jpg" id="carouselImg">
                 </div>
-  
+
                 <div class="carousel-item">
                     <div class="carousel-caption">
                     <h3 id="inTitulo">Alimentacion</h3>
@@ -88,22 +91,27 @@
                     </div>
                     <img class="d-block w-100" src="img/loro.webp" id="carouselImg">
                 </div>
-  
+
             </div>
             <a class="carousel-control-prev" href="#carousel1" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>                
                 <span class="sr-only">previous</span>
             </a>
-  
+
             <a class="carousel-control-next" href="#carousel1" data-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>                
                 <span class="sr-only">next</span>
             </a>
-  
+
         </div><!--cierre carousel-->
 <br>
 <br>
 <!--Inicio del Cuerpo-->
+
+
+
+
+<!--Inicio De la informacion De presentacion.-->
 <div class="jumbotron" >
     <div class="row">
     <div class="col-sm-6 ">
@@ -133,6 +141,9 @@
     </div>
 </div>
 </div>
+<!--Fin De la informacion De presentacion.-->
+
+<!--Inicio Del mapa y del Cuadro de donaciones.-->
 <div class="jumbotron" >
     <div class="row">
     <div class="col-sm-6 ">
@@ -160,98 +171,150 @@
     </div>
     <div class="col-sm-6">
         
-        <div>
-            <p id="titulo"> <span style="color: rgb(200, 165, 102);">¿Donde  </span><span style="color: rgb(188, 106, 12)">encontrarnos?</span> </p> 
-            <div class="map-responsive">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3326.62012214442!2d-70.7546862492779!3d-33.51125928066217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662dcd1fe0c7bab%3A0x4d17b82a7ba77488!2sDuoc%20UC%3A%20Sede%20Maipu!5e0!3m2!1ses-419!2scl!4v1680117243519!5m2!1ses-419!2scl" id="mapa" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-            </div>
+            <div>
+                <p id="titulo"> <span style="color: rgb(200, 165, 102);">¿Donde  </span><span style="color: rgb(188, 106, 12)">encontrarnos?</span> </p> 
+                <div class="map-responsive">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3326.62012214442!2d-70.7546862492779!3d-33.51125928066217!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662dcd1fe0c7bab%3A0x4d17b82a7ba77488!2sDuoc%20UC%3A%20Sede%20Maipu!5e0!3m2!1ses-419!2scl!4v1680117243519!5m2!1ses-419!2scl" id="mapa" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>        
         </div>
-        
-
     </div>
 </div>
+<!--Fin Del Del mapa y del Cuadro de donaciones.-->
+
+<!--Inicio Del Formulrio de contacto.-->
+<div class="jumbotron">
+    <p id="titulo"> <span style="color: rgb(200, 165, 102);">Formulario d</span><span style="color: rgb(188, 106, 12)">e Contacto</span> </p>
+    <div class="container">
+        <form action="#" method="post" name="contactme">
+            <div class="form-group">
+                <label for="Nombre">Nombre 🧑 </label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre" required class="form-control" minlength="4">
+            </div>
+
+            <div class="form-group">
+                <label for="Apellido">Apellido 🧑 </label>
+                <input type="text" id="apellido" name="apellido" placeholder="Ingrese su apellido" required class="form-control" minlength="4">
+            </div>
+
+            <div class="form-group">
+                <label for="correo">Correo electrónico ✉️</label>
+                <input type="text" id="correo" name="correo" required
+                    placeholder="ejemplocontacto@xxxxx.com" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="fono">Teléfono ☎️</label>
+                <input type="number" id="fono" name="fono" placeholder="XXXXXXXXX" required
+                    minlength="9" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="fecha">Fecha de nacimiento 📅 </label>
+                <input type="date" id="fecha" name="fecha" required 
+                    min="2005-01-01" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="genero">Género ⚧</label>
+                <select id="genero" class="form-control">
+                    <option selet>Seleccione género</option>
+                    <option value="1">Mujer</option>
+                    <option value="2">Hombre</option>
+                    <option value="3">Otro</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="genero">Mascota</label>
+                <select id="genero" class="form-control">
+                    <option selet>Seleccione género</option>
+                    <option value="1">Mujer</option>
+                    <option value="2">Hombre</option>
+                    <option value="3">Otro</option>
+                </select>
+            </div>
+
+    </div>
+
 </div>
-
-
-
-
-
+<!--Fin Del Formulrio de contacto.-->
 
     <!--Inicio pie de pagina-->
     <footer class="footer" id="piepagina"> 
-      <!--Container 1-->
-      <div class="container-fluid" style="background-color: rgb(0, 0, 0);">
-      <!--Elemento centrado.-->
-          
-          <a href="inicio.html">
-          <img src="img/Cheemis logo grande transparente footer.png" width="250px" height="250spx" 
-              alt="Cheemis Shop logo grande logo.png" id="centrar"> <!--Texto alternativo y tamaño de foto-->
-          </a>
-          
-      
-      <div class="row" id="columna" >
-      <div class="col-lg-3 col-md-6 d-flex">
-          <div>
-              <h4>Dirección</h4>
-              <h6>
-                  <img src="img/ubicaicon png.png" width="20px" height="20px" id="icono" alt="direccion png" >
-                  Av. Esq. Blanca 501 <br>
-                  Maipú , Región Metropolitana. <br>
-              </h6>
-          </div>
-      </div>
+        <!--Container 1-->
+        <div class="container-fluid" style="background-color: rgb(0, 0, 0);">
+        <!--Elemento centrado.-->
+            
+            <a href="inicio.html">
+            <img src="img/Cheemis logo grande transparente footer.png" width="250px" height="250spx" 
+                alt="Cheemis Shop logo grande logo.png" id="centrar"> <!--Texto alternativo y tamaño de foto-->
+            </a>
+            
+        
+        <div class="row" id="columna" >
+        <div class="col-lg-3 col-md-6 d-flex">
+            <div>
+                <h4>Dirección</h4>
+                <h6>
+                    <img src="img/ubicaicon png.png" width="20px" height="20px" id="icono" alt="direccion png" >
+                    Av. Esq. Blanca 501 <br>
+                    Maipú , Región Metropolitana. <br>
+                </h6>
+            </div>
+        </div>
 
-      <div class="col-lg-3 col-md-6 d-flex ">
-          <div>
-              <h4>Contacto</h4>
-              <div class="row">
-                  <h6 id="centrar">
-                  <img src="img/contacto png.png" width="20px" height="20px"  id="icono" alt="telefono png" >
-                  +56944440438 <br>
-                  </h6>
-              </div>
+        <div class="col-lg-3 col-md-6 d-flex ">
+            <div>
+                <h4>Contacto</h4>
+                <div class="row">
+                    <h6 id="centrar">
+                    <img src="img/contacto png.png" width="20px" height="20px"  id="icono" alt="telefono png" >
+                    +56944440438 <br>
+                    </h6>
+                </div>
 
-              <div class="row">
-                  <h6 id="centrars">
-                  <img src="img/correo png.png" width="20px" height="20px"  id="icono" alt="correo png" >
-                  cheemisshop@gmail.com <br>
-                  </h6>
-              </div>
-          </div>
-      </div>
+                <div class="row">
+                    <h6 id="centrars">
+                    <img src="img/correo png.png" width="20px" height="20px"  id="icono" alt="correo png" >
+                    cheemisshop@gmail.com <br>
+                    </h6>
+                </div>
+            </div>
+        </div>
 
-          <div class="col-lg-3 col-md-6 d-flex ">
-              <div>
-                  <h4>Horario</h4>
-                  <h6>
-                  <img src="img/horario png.png" width="20px" height="20px"  id="icono" alt="horario.png" >
-                  Atención: Lunes a Vienres <br>
-                  De 9:00 a 14:00 y 15:00 a 18:00 Horas.
-                  </h6>
-              </div>
-          </div>
+            <div class="col-lg-3 col-md-6 d-flex ">
+                <div>
+                    <h4>Horario</h4>
+                    <h6>
+                    <img src="img/horario png.png" width="20px" height="20px"  id="icono" alt="horario.png" >
+                    Atención: Lunes a Vienres <br>
+                    De 9:00 a 14:00 y 15:00 a 18:00 Horas.
+                    </h6>
+                </div>
+            </div>
 
-          <div class="col-lg-3 col-md-6 d-flex ">
-              <div>
-                  <h4>Nuestras Redes</h4>
-                  <p>
-                  <img src="img/facebook png.png" width="50px" height="50px" alt="facebook logo.png" style="margin-left: 15px;" >
-                  <img src="img/intagram png.png" width="50px" height="50px" alt="instagram logo.png" style="margin-left: 15px;">
-                  <img src="img/twitter png.png" width="50px" height="50px" alt="twitter logo.png" style="margin-left: 15px;">
-                  <img src="img/linked in png.png" width="50px" height="50px" alt="linked in  logo.png" style="margin-left: 15px;">
-                  </p>
-              </div>
-          </div>
-  </div>
+            <div class="col-lg-3 col-md-6 d-flex ">
+                <div>
+                    <h4>Nuestras Redes</h4>
+                    <p>
+                    <img src="img/facebook png.png" width="50px" height="50px" alt="facebook logo.png" style="margin-left: 15px;" >
+                    <img src="img/intagram png.png" width="50px" height="50px" alt="instagram logo.png" style="margin-left: 15px;">
+                    <img src="img/twitter png.png" width="50px" height="50px" alt="twitter logo.png" style="margin-left: 15px;">
+                    <img src="img/linked in png.png" width="50px" height="50px" alt="linked in  logo.png" style="margin-left: 15px;">
+                    </p>
+                </div>
+            </div>
+    </div>
 <!--Cierre Container 1.-->
 <br>
 
 <!--Inicio Container 2.-->
-  <div class="container-fluid">
-      <div class="copyright" id="copy">
-      &copy; Copyright <strong><span>Cheemis Pet Shop</span></strong>. 2023 All Rights Reserved
-      </div>
-  </div>
+    <div class="container-fluid">
+        <div class="copyright" id="copy">
+        &copy; Copyright <strong><span>Cheemis Pet Shop</span></strong>. 2023 All Rights Reserved
+        </div>
+    </div>
 <!--Cieere Container 2.-->
 
 </footer><!--Cierre pie de pagina.-->
