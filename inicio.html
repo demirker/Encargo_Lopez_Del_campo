@@ -6,10 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
-    <link rel="shortcut icon" href="img/basico.webp"> 
+    <link rel="shortcut icon" href="img/basico.webp">
     <title>Cheemis Shop Inicio</title>
+    <script>
+        let url='https://mindicador.cl/api';
+        fetch(url)
+            .then(Response=>Response.json())
+            .then(data=>mostrarData(data))
+            .catch(error=>console.log(error))
+        const mostrarData=(data)=>{
+            console.log(data)
+            let body=""
+            for (var i=0; i<data.length; i++){
+                body+=`<tr><td>${data[i].codigo}</td><td>${data[i].nombre}</td><td>${data[i].valor}</td><td>${data[i].fecha}</td></tr>`
+            }
+            document.getElementById('data').innerHTML=body
+        }
+
+        
+
+
+
+
+    </script>
 </head>
 
 
@@ -186,14 +205,14 @@
 <div class="jumbotron">
     <p id="titulo"> <span style="color: rgb(200, 165, 102);">Formulario d</span><span style="color: rgb(188, 106, 12)">e Contacto</span> </p>
     <div class="container">
-        <form action="#" method="post" name="contactme">
+        <form  id="contactame" action="#" method="post" name="contactme">
             <div class="form-group">
-                <label for="Nombre">Nombre 🧑 </label>
-                <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre" required class="form-control" minlength="4">
+                <label for="nombre">Nombre 🧑 </label>
+                <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre" required class="form-control" minlength="3">
             </div>
 
             <div class="form-group">
-                <label for="Apellido">Apellido 🧑 </label>
+                <label for="apellido">Apellido 🧑 </label>
                 <input type="text" id="apellido" name="apellido" placeholder="Ingrese su apellido" required class="form-control" minlength="4">
             </div>
 
@@ -226,19 +245,63 @@
             </div>
 
             <div class="form-group">
-                <label for="genero">Mascota</label>
-                <select id="genero" class="form-control">
-                    <option selet>Seleccione género</option>
-                    <option value="1">Mujer</option>
-                    <option value="2">Hombre</option>
-                    <option value="3">Otro</option>
+                <label for="mascota">Mascota 🐶</label>
+                <select id="mascota" class="form-control">
+                    <option selet>Seleccione Tipo de mascota</option>
+                    <option value="1">Perros</option>
+                    <option value="2">Gatos</option>
+                    <option value="3">Conejos</option>
+                    <option value="4">Pajaros</option>
+                    <option value="5">Hamsters</option>
                 </select>
             </div>
+
+            <div class="form-group">
+                <label for="escribenos">Escribenos 💌</label>
+                <textarea id="carta" class="form-control" rows="7"> 
+                </textarea>
+            </div>
+
+            <div class="form-check" >
+                <input type="checkbox" id="check1" name="check1" class="form-check-input" value="1">
+                <label for="check1" class="form-check-label" >Esta de acuerdo para recibir nustras promociones al correo. </label>
+            </div>
+            <input type="submit" value="Enviar" id="enviar" class="btn btn-success">
+
+
 
     </div>
 
 </div>
 <!--Fin Del Formulrio de contacto.-->
+
+
+<!--Api indicadores economicos.-->
+
+<div class="jumbotron">
+    <div>
+        <p id="titulo"> <span style="color: rgb(200, 165, 102);">Divi</span><span style="color: rgb(188, 106, 12)">sas</span> </p> 
+        <p id="parrafo">En este apartado podra encontrar la informacion de las distintas divisas que trabajamos en precio Chileno para
+            que usted consumidor pueda realizar una correcta gestion y no tenga dudas al momento de comprar.
+        </p>
+        <table class="table" >
+            <thead>
+                <tr>
+                    <th> Codigo </th>
+                    <th> Nombre  </th>
+                    <th> Valor en CLP </th>
+                    <th> Fecha de Actualización </th>
+                </tr>
+            </thead>
+            <tbody id="data">
+                
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
 
     <!--Inicio pie de pagina-->
     <footer class="footer" id="piepagina"> 

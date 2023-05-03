@@ -206,24 +206,27 @@ h6{
 
 #borde{
     border: 5px solid rgb(200, 165, 102);
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    height: 500px;
+    max-width: 100%;
+    height: auto;
+}
+
+#borde2{
+    border: 5px solid rgb(200, 165, 102);
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
+    height: 300px;
 }
 
 #tit{
     color: rgb(188, 106, 12);
     text-align: center;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    margin: auto;
     font-size: 25px;
-}
-
-#texto{
-    color:  rgb(188, 106, 12);
-    border: 5px solid  rgb(188, 106, 12);
-    width: 150px;
-    height: 50px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 #precio{
@@ -233,26 +236,36 @@ h6{
     font-size: 25px;
 }
 
-
-
-#texto:hover{
-    color:rgb(200, 165, 102);
-    border: 5px solid rgb(200, 165, 102);
-    width: 150px;
+#texto{
+    color:  rgb(188, 106, 12);
+    border: 5px solid  rgb(188, 106, 12);
+    width: 130px;
     height: 50px;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    margin-top: auto;
+    margin-bottom: 1px;
+    font-size: 13px;
 }
 
-#imagen{
-    width: 100%;
-    height: auto;
-    max-width:400px;
+#texto:hover{
+    color:rgb(200, 165, 102);
+    border: 5px solid rgb(200, 165, 102);
+    width: 130px;
+    height: 50px;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    
+    margin-bottom: 1px;
+    font-size: 13px;
+}
+
+#imagen{
+    max-width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /*inicio*/
