@@ -6,9 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
     <link rel="shortcut icon" href="img/basico.webp">
     <title>Cheemis Shop Inicio</title>
     <script>
+
+        //Fetch para llamara a la api.
         let url='https://mindicador.cl/api';
         fetch(url)
             .then(Response=>Response.json())
@@ -16,14 +20,103 @@
             .catch(error=>console.log(error))
         const mostrarData=(data)=>{
             console.log(data)
+            console.log(data.length)
             let body=""
-            for (var i=0; i<data.length; i++){
-                body+=`<tr><td>${data[i].codigo}</td><td>${data[i].nombre}</td><td>${data[i].valor}</td><td>${data[i].fecha}</td></tr>`
-            }
+            
+            body+=`<tr>
+                    <td><p>
+                        ${data.bitcoin.codigo}<br>
+                        ${data.bitcoin.valor}
+                        ${data.bitcoin.fecha}</p></td>
+                    <td><p>
+                        ${data.dolar.codigo}
+                        ${data.dolar.nombre}</p></td>
+                    <td>${data.euro.codigo}</td>
+                    <td>${data.uf.codigo}</td></tr>`
+            
+
+
+           /* for (var i=0; i<data.length; i++){
+                body+=`<tr><td>${data[i].bitcoin.codigo}</td>
+                    <td>${data[i].dolar.codigo}</td>
+                    <td>${data[i].euro.codigo}</td>
+                    <td>${data[i].uf.codigo}</td></tr>`
+            }*/
             document.getElementById('data').innerHTML=body
         }
+    </script>
+    <script>
+    //funcion que valida un formulario
+$(function(){
+    
+    $("#contactame").validate({
 
-        
+        rules:{
+            nombre:{
+                required:true
+            },
+            apellido:{
+                required:true
+            },
+            correo:{
+                required:true,
+                email:true
+            },
+            fono:{
+                required:true
+            },
+            
+            fecha:{
+                required:true
+            },
+            genero:{
+                required:true
+            },
+            mascota:{
+                required:true
+            },
+            mensaje:{
+                required:true,
+                minlength: 25
+            }
+        },//rules
+        messages:{
+            nombre:{
+                required:'Ingrese su nombre',
+                minlength:'Caracteres insuficientes (3)'
+            },
+            apellido:{
+                required:'Ingrese su apellido',
+                minlength:'Caracteres insuficientes (3)'
+            },
+            correo:{
+                required:'Ingrese correo electrónico',
+                email:'Formato de correo no válido'
+            },
+            fono:{
+                required:'Ingrese número de teléfono',
+                minlength:'Digitos insuficientes (9)'
+            },
+            fecha:{
+                required:'Ingrese una fecha',
+                max:'Seleccione una fecha válida,tiene que ser mayor de 18 años '
+            },
+            genero:{
+                required:'Seleccione su genero',
+                combo:'Seleccione genero'
+            },
+            mascota:{
+                required:'Seleecione su tipo de mascota',
+                check:'Seleccione tipo de mascota.'
+            },
+            mensaje:{
+                required:'Tiene que escribir un mensaje',
+                minlength:'Digitos insuficientes (25)'
+            }
+        },
+    })
+});
+
 
 
 
@@ -205,7 +298,7 @@
 <div class="jumbotron">
     <p id="titulo"> <span style="color: rgb(200, 165, 102);">Formulario d</span><span style="color: rgb(188, 106, 12)">e Contacto</span> </p>
     <div class="container">
-        <form  id="contactame" action="#" method="post" name="contactme">
+        <form  id="contactame" action="#" method="post" name="contactame">
             <div class="form-group">
                 <label for="nombre">Nombre 🧑 </label>
                 <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre" required class="form-control" minlength="3">
@@ -231,13 +324,13 @@
             <div class="form-group">
                 <label for="fecha">Fecha de nacimiento 📅 </label>
                 <input type="date" id="fecha" name="fecha" required 
-                    min="2005-01-01" class="form-control">
+                    max="2005-01-01" class="form-control">
             </div>
 
             <div class="form-group">
                 <label for="genero">Género ⚧</label>
-                <select id="genero" class="form-control">
-                    <option selet>Seleccione género</option>
+                <select id="genero" class="form-control" required>
+                    <option value="" >Seleccione Genero.</option>
                     <option value="1">Mujer</option>
                     <option value="2">Hombre</option>
                     <option value="3">Otro</option>
@@ -246,8 +339,8 @@
 
             <div class="form-group">
                 <label for="mascota">Mascota 🐶</label>
-                <select id="mascota" class="form-control">
-                    <option selet>Seleccione Tipo de mascota</option>
+                <select id="mascota" class="form-control" required >
+                    <option value="">Seleccione Tipo de Mascota.</option>
                     <option value="1">Perros</option>
                     <option value="2">Gatos</option>
                     <option value="3">Conejos</option>
@@ -258,13 +351,14 @@
 
             <div class="form-group">
                 <label for="escribenos">Escribenos 💌</label>
-                <textarea id="carta" class="form-control" rows="7"> 
-                </textarea>
+                <textarea id="mensaje" class="form-control" rows="7"  placeholder="Escribenos aca" minlength="25" required></textarea>
             </div>
+
+            
 
             <div class="form-check" >
                 <input type="checkbox" id="check1" name="check1" class="form-check-input" value="1">
-                <label for="check1" class="form-check-label" >Esta de acuerdo para recibir nustras promociones al correo. </label>
+                <label for="check1" class="form-check-label" ><p>Esta de acuerdo para recibir nustras promociones al correo. </p></label>
             </div>
             <input type="submit" value="Enviar" id="enviar" class="btn btn-success">
 
@@ -284,7 +378,7 @@
         <p id="parrafo">En este apartado podra encontrar la informacion de las distintas divisas que trabajamos en precio Chileno para
             que usted consumidor pueda realizar una correcta gestion y no tenga dudas al momento de comprar.
         </p>
-        <table class="table" >
+        <table class="table table-dark table-hover" >
             <thead>
                 <tr>
                     <th> Codigo </th>
@@ -388,7 +482,7 @@
         
 
     <!--Librerias de bootrap-->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
 </body>
