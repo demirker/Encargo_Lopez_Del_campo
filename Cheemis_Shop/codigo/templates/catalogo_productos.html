@@ -119,11 +119,17 @@
                     <div class="precio" id="precio">
                         <a>${{producto.precios}}</a>
                     </div>
+
+                    <div class="stocks" id="stocks" >
+                        <a>Cantidad disponible:{{producto.stock}}</a>
+                    </div>
+                    
                     <div>
                         <a href="#" class="btn btn.bg-success" id="texto">
                             Agregar al carro
                         </a>
                     </div>
+                    
                     {% if user.is_authenticated %}
                     <div class="btncontenedor">
                         <a href="{% url 'eliminar' producto.codigo %}" class="btn btn.bg-success" style="background-color: rgb(200, 165, 102);"  >

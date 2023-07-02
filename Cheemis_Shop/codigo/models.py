@@ -13,6 +13,7 @@ class Producto(models.Model):
     nombre=models.CharField(max_length=50, blank=True, verbose_name="Nombre Producto")
     descripcion=models.TextField(max_length=200, blank=True, verbose_name="Descripcion del Producto")
     precios=models.IntegerField( blank=True, verbose_name="Precio del producto")
+    stock=models.IntegerField( blank=True, verbose_name="Cantidad de producto en inventario")
     imagen=models.ImageField(upload_to='imagenes', null=True ,verbose_name="Imagen")
     categoria=models.ForeignKey(Categoria, on_delete=models.CASCADE, verbose_name="Categoria")
     

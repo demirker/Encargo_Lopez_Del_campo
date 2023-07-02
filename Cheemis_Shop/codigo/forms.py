@@ -10,12 +10,13 @@ from .models import Categoria, Producto
 class ProductoForm(forms.ModelForm):
     class Meta:
         model=Producto
-        fields=['codigo','nombre','precios','descripcion','imagen','categoria']
+        fields=['codigo','nombre','precios','stock','descripcion','imagen','categoria']
         labels = {
             'codigo' : "Codigo",
             'nombre' : "Nombre",
             'descripcion' : "Descripcion",
             'precios' : "Precios",
+            'stock':"Stock",
             'imagen': "Imagen",
             'categoria':"Categoria"
         }
@@ -60,6 +61,13 @@ class ProductoForm(forms.ModelForm):
                     'placeholder' : 'Ingrese precio del prodcuto',
                     'class' : 'form-control',
                     'id' : 'precios'
+                }
+            ),
+            'stock':forms.NumberInput(
+                attrs={
+                    'placeholder' : 'Ingrese stock del prodcuto',
+                    'class' : 'form-control',
+                    'id' : 'stock'
                 }
             ),
         }

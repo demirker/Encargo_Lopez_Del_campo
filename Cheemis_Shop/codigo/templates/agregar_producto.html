@@ -25,6 +25,7 @@ $(function(){
             precios:"required",
             imagen:"required",
             categoria:"required",
+            stock:"required",
             
 
         },
@@ -47,6 +48,9 @@ $(function(){
             },
             imagen:{
                 required:'Cargue una foto',
+            },
+            stock:{
+                required:'Ingrese un stock',
             },
         }
     })
@@ -146,6 +150,13 @@ $(function(){
                     {{productoform.precios.label}}
                 </label>
                 {{productoform.precios}}
+            </div>
+
+            <div class="row">
+                <label for="{{ productoform.field.name}}">
+                    {{productoform.stock.label}}
+                </label>
+                {{productoform.stock}}
             </div>
 
             <div class="row">

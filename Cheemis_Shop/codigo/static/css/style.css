@@ -220,6 +220,12 @@ h6{
 .lista_productos .item_producto{
     transition: all .4s;
 }
+#stocks{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align:center;
+    margin: 10px;
+    color: rgb(188, 106, 12);
+}
 
 #borde{
     border: 5px solid rgb(200, 165, 102);
@@ -312,7 +318,7 @@ h6{
 
 .card{
     width: 350px;
-    height: 600px;
+    height: 650px;
     background-color: #000000;
     border-radius: 15px;
     position: relative;
