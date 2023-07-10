@@ -15,6 +15,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
     <script src="{% static 'js/Elementos catalogo.js' %}"></script>
 
+    <script>
+        function showOptions() {
+            document.querySelector('.dropdown-content').style.display = 'block';
+        }
+
+        function hideOptions() {
+            document.querySelector('.dropdown-content').style.display = 'none';
+        }
+    </script>
+
 </head>
 
 <body>
@@ -46,37 +56,65 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'informacion' %}" > Quienes Somos </a>
-                    </li> 
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'carrito_compras' %}" > Carrito de compras </a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'detalle_compras' %}" > Detalle de compras </a>
+                    </li>
+                    {% endif %}
+
+                    {% if user.is_staff %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'historial' %}"  > Historial de ventas </a>
+                    </li>
+                    {% endif %}
                 </ul>
 
                 
             </div> 
             <!--Boton inicio de sesion-->
-            <div class="nav-item">
+            
                 {% if user.is_authenticated %}
                 
-                <ul class="despeglable">
-                    <a id="iniciosesion">
-                        <img src="{% static 'img/inicio-transparente.png' %}" width="40px">{{user.username}}
-                    </a> 
-                    <div class="elementos">
-                        <li>
-                            <a class="nav-link" href="ranking.html">Perfil</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
-                        </li>
-                        
-                    </div>
 
-                </ul>
+                <div class="dropdown">
+                    
+                    <a onclick="showOptions()" id="iniciosesion"   style="background-color: transparent;">
+                        <img src="{% static 'img/inicio-transparente.png' %}" width="40px">{{user.username}}
+                    </a>
+                    <div class="dropdown-content" onmouseout="hideOptions()">
+                        <div class="dropdown-content">
+                            <a href="{% url 'logout' %}" id="iniciosesion"   style="background-color: transparent;">
+                                Cerrar sesión
+                            </a>
+                            
+                            
+                        </div>
+                </div>
                     
                 {% else %}
-                    
-                    <a href="{% url 'login' %}" id="iniciosesion"   style="background-color: transparent;">
-                        <img src="{% static 'img/inicio-transparente.png' %}" width="40px">Iniciar sesión
-                    </a>
 
+                    <div class="dropdown">
+                            <a onclick="showOptions()" id="iniciosesion"   style="background-color: transparent;">
+                                <img src="{% static 'img/inicio-transparente.png' %}" width="40px">Usuario
+                            </a>
+                        
+                        <div class="dropdown-content" onclick="hideOptions()">
+                            <div class="dropdown-content">
+                                <a href="{% url 'login' %}" id="iniciosesion"   style="background-color: transparent;">
+                                    Iniciar Sesion
+                                </a>
+                                <a href="{% url 'registrar' %}" id="iniciosesion"   style="background-color: transparent;">
+                                    Registrarse
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
                 {% endif %}
             </div> 
         </nav> <!--Cierre de menu -->
@@ -95,7 +133,7 @@
             <a href="#" class="btn btn.bg-success item_categoria" id="catalogo" category="pajaros">Pajaros</a>
     </div>
     <br>
-    {% if user.is_authenticated %}
+    {% if user.is_staff %}
     <a href="{% url 'agregar_producto' %}" class="btn btn.bg-success item_categoria" style="background-color: rgb(200, 165, 102);margin-left: 50px;" >Agregar producto</a>
     <br>
     <br>
@@ -121,16 +159,21 @@
                     </div>
 
                     <div class="stocks" id="stocks" >
+
                         <a>Cantidad disponible:{{producto.stock}}</a>
                     </div>
                     
                     <div>
-                        <a href="#" class="btn btn.bg-success" id="texto">
+                        {% if producto.stock > 0 %}
+                        <a href="{% url 'agregar_carrito' producto.codigo %}" class="btn btn.bg-success" id="texto">
                             Agregar al carro
                         </a>
+                        {%else%}
+                        
+                        {%endif%}
                     </div>
                     
-                    {% if user.is_authenticated %}
+                    {% if user.is_staff %}
                     <div class="btncontenedor">
                         <a href="{% url 'eliminar' producto.codigo %}" class="btn btn.bg-success" style="background-color: rgb(200, 165, 102);"  >
                             Eliminar

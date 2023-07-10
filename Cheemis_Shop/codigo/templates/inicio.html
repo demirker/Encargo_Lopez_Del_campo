@@ -15,7 +15,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
     <script src="{% static 'js/Fomulario Validado.js' %}"></script>
     
-    
+    <script>
+        function showOptions() {
+            document.querySelector('.dropdown-content').style.display = 'block';
+        }
+
+        function hideOptions() {
+            document.querySelector('.dropdown-content').style.display = 'none';
+        }
+    </script>
     
 
 
@@ -50,37 +58,65 @@
 
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'informacion' %}" > Quienes Somos </a>
-                    </li> 
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'carrito_compras' %}" > Carrito de compras </a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'detalle_compras' %}" > Detalle de compras </a>
+                    </li>
+                    {% endif %}
+
+                    {% if user.is_staff %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'historial' %}"  > Historial de ventas </a>
+                    </li>
+                    {% endif %}
                 </ul>
 
                 
             </div> 
             <!--Boton inicio de sesion-->
-            <div class="nav-item">
+            
                 {% if user.is_authenticated %}
                 
-                <ul class="despeglable">
-                    <a id="iniciosesion">
-                        <img src="{% static 'img/inicio-transparente.png' %}" width="40px">{{user.username}}
-                    </a> 
-                    <div class="elementos">
-                        <li>
-                            <a class="nav-link" href="ranking.html">Perfil</a>
-                        </li>
-                        <li>
-                            <a class="nav-link" href="{% url 'logout' %}">Cerrar sesión</a>
-                        </li>
-                        
-                    </div>
 
-                </ul>
+                <div class="dropdown">
+                    
+                    <a onclick="showOptions()" id="iniciosesion"   style="background-color: transparent;">
+                        <img src="{% static 'img/inicio-transparente.png' %}" width="40px">{{user.username}}
+                    </a>
+                    <div class="dropdown-content" onmouseout="hideOptions()">
+                        <div class="dropdown-content">
+                            <a href="{% url 'logout' %}" id="iniciosesion"   style="background-color: transparent;">
+                                Cerrar sesión
+                            </a>
+                            
+                            
+                        </div>
+                </div>
                     
                 {% else %}
-                    
-                    <a href="{% url 'login' %}" id="iniciosesion"   style="background-color: transparent;">
-                        <img src="{% static 'img/inicio-transparente.png' %}" width="40px">Iniciar sesión
-                    </a>
 
+                    <div class="dropdown">
+                            <a onclick="showOptions()" id="iniciosesion"   style="background-color: transparent;">
+                                <img src="{% static 'img/inicio-transparente.png' %}" width="40px">Usuario
+                            </a>
+                        
+                        <div class="dropdown-content" onclick="hideOptions()">
+                            <div class="dropdown-content">
+                                <a href="{% url 'login' %}" id="iniciosesion"   style="background-color: transparent;">
+                                    Iniciar Sesion
+                                </a>
+                                <a href="{% url 'registrar' %}" id="iniciosesion"   style="background-color: transparent;">
+                                    Registrarse
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
                 {% endif %}
             </div> 
         </nav> <!--Cierre de menu -->

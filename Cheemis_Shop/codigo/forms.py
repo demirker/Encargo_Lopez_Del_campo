@@ -5,6 +5,7 @@ from django.forms import widgets
 from django.forms.models import ModelChoiceField
 from django.forms.widgets import Widget
 from .models import Categoria, Producto
+from django.contrib.auth.forms import UserCreationForm
 
 #Clase de contiene los campos del formulario de los productos.}
 class ProductoForm(forms.ModelForm):
@@ -71,3 +72,10 @@ class ProductoForm(forms.ModelForm):
                 }
             ),
         }
+#Formulario de registro
+
+class RegistroUserForm(UserCreationForm):
+    pass
+    ##class meta:
+    ##    model= User
+    ##    fields = ['username', 'first_name', 'last_name', 'email', 'password1', 'password2']

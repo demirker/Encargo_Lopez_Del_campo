@@ -1,75 +1,32 @@
+
+{% block content %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Prodcuto</title>
+    <title>Detalle de compras </title>
     {% load static %}
     <!--Icono -->
-    <link rel="shortcut icon" href="{% static 'img/basico.webp' %}"> 
+    <link rel="shortcut icon" href="{% static 'img/basico.webp' %}">
     <!--Acihivos Estaticos y librerias.-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
-    <script src="{% static 'js/Elementos catalogo.js' %}"></script>
-    <script>
-        //Funcion que valida el formulario.
-$(function(){
-    $("#formulario").validate({
-        rules:{
-            codigo:"required",
-            nombre:"required",
-            descripcion:"required",
-            precios:"required",
-            imagen:"required",
-            categoria:"required",
-            stock:"required",
-            
 
-        },
-        messages:{
-            codigo:{
-                required:'Ingrese un Codigo de prodcuto',
-            },
-            nombre:{
-                required:'Ingrese un Nombre para el prodcuto ',
-            },
-            precios:{
-                required:'Ingrese un precio',
-            },
-            descripcion:{
-                required:'Ingrese una descripcion de porducto',
-                
-            },
-            categoria:{
-                required:'Seleccione una categoria',
-            },
-            imagen:{
-                required:'Cargue una foto',
-            },
-            stock:{
-                required:'Ingrese un stock',
-            },
+    <script>
+        function showOptions() {
+            document.querySelector('.dropdown-content').style.display = 'block';
         }
-    })
-    
-})
+
+        function hideOptions() {
+            document.querySelector('.dropdown-content').style.display = 'none';
+        }
     </script>
 
-<script>
-    function showOptions() {
-        document.querySelector('.dropdown-content').style.display = 'block';
-    }
-
-    function hideOptions() {
-        document.querySelector('.dropdown-content').style.display = 'none';
-    }
-</script>
-    
-    
 </head>
+<body>
+
     <!--Cabeza de pagina-->
     <header id="header"  >
         <div>
@@ -163,70 +120,61 @@ $(function(){
         
         </div>
     </header><!--Cierre de cabezal de pagina.-->
-    
-<div class="container-fluid" style="background-color: black;" >
-    <div class="container" style="background-color: black;" >
-        <p id="titulo"> <span style="color: rgb(200, 165, 102);">Agregar produ</span><span style="color: rgb(188, 106, 12)">cto al catalogo</span> </p> 
-        <form method="POST" id="formulario" enctype="multipart/form-data">
-            {% csrf_token %}
-            <div class="row">
-                <label for="{{ productoform.field.name}}">
-                    {{productoform.codigo.label}}
-                </label>
-                {{ productoform.codigo}}
-            </div>
 
-            <div class="row">
-                <label for="{{ productoform.field.name}}">
-                    {{productoform.nombre.label}}
-                </label>
-                {{ productoform.nombre}}
-            </div>
 
-            <div class="row">
-                <label for="{{productoform.field.name}}">
-                    {{productoform.precios.label}}
-                </label>
-                {{productoform.precios}}
-            </div>
+<div style="background-color: black;">
+    <br>
+    <p id="titulo" id="centrar"> <span style="color: rgb(200, 165, 102);">Detalle d</span><span style="color: rgb(188, 106, 12)">e Compras</span> </p> 
+    <div class="table-responsive" >
+        <table class="table table-dark table-hover "  >
+            <thead>
+                <tr>
+                    <th>Usuario</th>
+                    <th>Código Boleta</th>
+                    <th>Nombre Prodcuto</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                    <th>Estado</th>
+                    
+                </tr>
+            </thead>
+            
+            <tbody>
+                
+                {% for prod in productos%}
+                <tr>
+                    <td>{{ usuario }}</td>
+                    <td>{{ prod.id_boleta }}</td>
+                    <td>{{ prod.id_producto }}</td>
+                    <td>{{ prod.cantidad }}</td>
+                    <td>{{ prod.subtotal }}</td>
+                    <td>{{ estado }}</td>
+                    
+                </tr>
+                {% endfor %}
+            
+            
+                
 
-            <div class="row">
-                <label for="{{ productoform.field.name}}">
-                    {{productoform.stock.label}}
-                </label>
-                {{productoform.stock}}
-            </div>
-
-            <div class="row">
-                <label for="{{ productoform.field.name}}">
-                    {{productoform.descripcion.label}}
-                </label>
-                {{productoform.descripcion}}
-            </div>
-
-            <div class="row">
-                <label for="{{ productoform.field.name}}">
-                    {{productoform.categoria.label}}
-                </label>
-                {{ productoform.categoria}}
-            </div>
-
-            <div class="row">
-                <label for="{{ productoform.field.name}}">
-                    {{productoform.imagen.label}}
-                </label>
-                {{ productoform.imagen}}
-            </div>
-            <br>
-            <br>
-            <input type="submit" class="btn btn-success" value="Enviar"id="enviar" style="float:left;" >
-            <a href="{% url 'inicio' %}" class="btn btn-primary" id="enviar" style="float: right;" >Inicio</a>
-            <br>
-            <br>
-        </form>
-    </div>
+                
+            </tbody>
+            <tr><td><h6>Total Envio $: {{ envio }}</h6></td>
+            <tr><td><h6>Total Impuestos $: {{ impuesto }}</h6></td>
+            <tr><td><h6>Total Compra $: {{ total }}</h6></td>
+                
+            </tr>
+        </table>
 </div>
-</body>
+
+</div>
+
+
+
+
+
+
+
+
 
 
 
@@ -307,4 +255,18 @@ $(function(){
     </div>
 <!--Cieere Container 2.-->
 
-    </footer><!--Cierre pie de pagina.-->   
+</footer><!--Cierre pie de pagina.-->
+
+    
+
+        
+        
+
+    <!--Librerias de bootrap-->
+    <!--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></scrip>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+
+</body>
+</html>
+{% endblock %}
