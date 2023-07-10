@@ -76,6 +76,12 @@ def agregar_carrito(request,codigo):
     carrito_compra= Carrito(request)
     producto = Producto.objects.get(codigo=codigo)
     carrito_compra.agregar(producto=producto)
+    return redirect('catalogo_productos')
+
+def sumar_carrito(request,codigo):
+    carrito_compra= Carrito(request)
+    producto = Producto.objects.get(codigo=codigo)
+    carrito_compra.agregar(producto=producto)
     return redirect('carrito_compras')
 
 def eliminar_producto(request,codigo):

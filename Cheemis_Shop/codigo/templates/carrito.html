@@ -57,11 +57,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'carrito_compras' %}" > Carrito de compras </a>
                     </li>
-                    {% if user.is_authenticated %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'detalle_compras' %}" > Detalle de compras </a>
-                    </li>
-                    {% endif %}
+                    
 
                     {% if user.is_staff %}
                     <li class="nav-item">
@@ -138,6 +134,7 @@
             <tbody>
                 {% if request.session.carrito.items %}
                 {% for key, value in request.session.carrito.items %}
+                
                 <tr>
                     <td >{{ value.codigo }}</td>
                     <td >{{ value.nombre }}</td>
@@ -146,7 +143,7 @@
                         
                         {{ value.cantidad}}
                         <br>
-                        <a href="{% url 'agregar_carrito' value.codigo %}" class="badge btn btn-primary">+</a>
+                        <a href="{% url 'sumar_carrito' value.codigo %}" class="badge btn btn-primary">+</a>
                         <a href="{% url 'restar' value.codigo %}" class="badge btn btn-warning">-</a>
                         
                     </td>
@@ -156,6 +153,7 @@
                     <th scope="row">Total : </th>
                     <td colspan="2">$ {{value.total}}</td>
                 </tr>
+                
                 {% endfor %}
                 {% else %}
             <tr>

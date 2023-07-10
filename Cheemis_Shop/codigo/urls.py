@@ -1,6 +1,6 @@
 from django.urls import path
 
-from codigo.views import inicio, informacion,catalogo_productos,agregar_producto,eliminar,modificar,registrar,carrito_compras,agregar_carrito,eliminar_producto,restar_producto,limpiar_carrito,detalle_compras,generarBoleta,historial
+from codigo.views import inicio, informacion,catalogo_productos,agregar_producto,eliminar,modificar,registrar,carrito_compras,agregar_carrito,eliminar_producto,restar_producto,limpiar_carrito,detalle_compras,generarBoleta,historial,sumar_carrito
 
 urlpatterns=[
     path('', inicio, name='inicio'), #comillas simples vacias es para que sea la pagina inicial
@@ -17,6 +17,7 @@ urlpatterns=[
     path('eliminar_producto/<codigo>', eliminar_producto, name="eliminar"),
     path('restar_producto/<codigo>', restar_producto, name="restar"),
     path('limpiar_carrito/', limpiar_carrito, name="limpiar"),
+    path('sumar_carrito/<codigo>', sumar_carrito, name="sumar_carrito"),
     #Detalle de compras.
     path('detalle_compras/', detalle_compras,name="detalle_compras"),
     path('generarBoleta/', generarBoleta ,name="generarBoleta"),
